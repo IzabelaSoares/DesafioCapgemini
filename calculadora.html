@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Calculadora de Anuncios</title>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+      *{
+        text-align: center;
+        font-family: 'Akaya Kanadaka', cursive;
+      }
+      h1{
+        font-size: 30pt;
+        margin: 20px;
+      }
+      p{
+        margin: 10px;
+        padding: 0;
+      }
+      body{
+        font-size: 20pt;
+        color: white;
+        background-image: url("anuncio.png");
+        background-repeat: no-repeat;
+        background-color: rgb(10,95,162);
+        background-position: center 0;
+      }
+      button, input{
+        font-size: 20px;
+      }
+      input{
+        width: 60pt;
+      }
+      #alcance{
+        position: relative;
+        top: 300px;
+      }
+    </style>
+    <script type="text/javascript">
+      function CalcularAnuncios() {
+      //Variáveis
+      investimento = Number(document.getElementById('money').value);
+      vInicial = investimento * 30;
+      minCompartilhar = 56;
+      fimAlcance = vTotal = vInicial;
+
+      //Resultado começa vazio
+      alcance.innerHTML = ` `;
+
+      //Validação de Dados (pega qualquer valor invalido)
+        if (investimento < 1 ) {
+          alert(`Informe um valor maior que R$ 1 real`);
+        }
+        else if (Number.isInteger(investimento) == false) {
+          alert(`O valor informado deve ser inteiro`);
+        }
+        else {
+          //Calcular os Anuncios
+          for (var compartilhar = 0; fimAlcance >= minCompartilhar && compartilhar < 4;compartilhar++){
+            fimAlcance -= minCompartilhar;
+            vTotal += 40;
+          }
+          //Resultado
+          alcance.innerHTML += `<br>Você alcançará ${vTotal} visualizações`;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <section>
+        <h1>Calculadora de Anúncios</h1>
+        <p>Para usar a calculadora, basta informar o valor de investimento</p>
+        <label for="investiment">R$</label>
+        <input type="number" name="investiment" id="money">
+        <button type="button" name="enviar" onclick="CalcularAnuncios()">Calcular</button>
+        <div id="alcance"></div>
+    </section>
+  </body>
+</html>

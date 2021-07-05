@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+*{
+    text-align: center;
+    font-family: 'Akaya Kanadaka', cursive;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    text-decoration: none;
+    color: white;
+}
+table{
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+th{
+    padding: 10px 60px;
+}
+nav{
+    display: table;
+    margin: 0 auto;
+    position: absolute;
+    top: 40%;
+    left: 26%;
+}
+ul{
+    padding-top: 0;
+    margin-top: 0;
+}
+li{
+    background-color: rgb(249, 250, 252);
+    text-transform: none;
+    display: inline-block;
+    float: left;
+    position: relative;
+    text-align: center;
+    width: 300px;
+    line-height: 120px;
+    transition-duration: 0.5s;
+    box-shadow: none;
+    font-weight: bolder;
+    font-size: 25pt;
+}
+li:hover{
+    background-color: rgb(10,95,162);
+}
+h1{
+    font-size: 30pt;
+    margin: 50px;
+}
+p{
+    margin: 10px;
+    padding: 0;
+}
+body{
+    font-size: 20pt;
+    color: white;
+    background-image: url("anuncio.png");
+    background-repeat: no-repeat;
+    background-color: rgb(10,95,162);
+    background-position: center 0;
+}
+.formulario{
+    padding: 30px;
+}
+button, input{
+    font-size: 20px;
+}
+input[type=date]{
+    width: 110pt;
+}
+inputinput[type=text]{
+    width: 350pt;
+}
+input[type=number]{
+    width: 60pt;
+}
+#resultado{
+    font-weight: bold;
+    font-size: 30pt;
+}
+#consulta{
+    font-weight: bold;
+    font-size: 30pt;
+    position: absolute;
+    bottom: 10px;
+    left: 25%;
+}
+#pageConsulta{
+    margin-bottom: 20px;
+}
+select{
+    font-size: 20px;
+}
