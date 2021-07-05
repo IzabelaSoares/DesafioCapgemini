@@ -1,0 +1,25 @@
+CREATE DATABASE anuncio;
+
+DROP TABLE cadastro;
+DROP TABLE consulta;
+
+CREATE TABLE cadastro (
+	id serial not null,
+	nome varchar(100) not null,
+	cliente varchar (100) not null,
+	inicio date not null,
+	termino date not null,
+	investimento int not null,
+	primary key (cliente));
+
+CREATE TABLE consulta (
+	id serial not null,
+	nome varchar(100) not null,
+	cliente varchar(100) not null,
+	visualizacao int,
+	clique int,
+	compartilhamento int,
+	investimentototal int,
+	primary key (cliente));
+
+ALTER TABLE ONLY consulta ADD CONSTRAINT fk_cliente FOREIGN KEY (cliente) REFERENCES cadastro(cliente);
