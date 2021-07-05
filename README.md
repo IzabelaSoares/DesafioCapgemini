@@ -41,7 +41,7 @@ Tempo dedicado: ainda não calculado <br>
 ### Executar o sistema 
 
 1. Faça um git clone do projeto para sua maquina local e o abra com o Netbeans <br>
-2. Crie o banco de dados anuncio de acordo com o banco usado no projeto (crud estará em uma pasta chamada Banco de Dados) <br>
+2. Crie o banco de dados anuncio de acordo com o banco usado no projeto (o CRUD estará na pasta principal mesmo) <br>
 3. Na aba Project acesse AnunciosCapgemini -> Libraries e verifique se consistem os seguintes arquivos <br> 
 `PostgreSQL JDBC Driver`, `JDK 1.8 (Default)`, `Apache Tomcat or TomEE` <br>
 4. Na aba Services acesse Databases -> Drives -> PostgreSQL, selecione o `conecting using...` e conecte com o banco de dados <br>
