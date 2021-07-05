@@ -49,7 +49,7 @@ function VerificarCadastro() {
     document.forms[0].submit();
 }
 
-function VerificarConsulta() {
+function Consultar() {
     //TRANSFORMAR OS CAMPOS EM VARIÁVEIS
     cliente = document.getElementById('cliente').value;
     inicio = document.getElementById('inicio').value;

@@ -14,11 +14,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href= "ESTILO/style.css">
         <script type="text/javascript" src="SCRIPT/script.js"></script>
-        <title>Consultar de Anúncios</title>
+        <title>Consultar Anúncios</title>
     </head>
     <body>  
         <%
-
             //CLIENTES
             Anuncio cliente = new Anuncio();
             List<Anuncio> lista = cliente.listaClientes();
@@ -37,24 +36,24 @@
         %>
         <h1>Consultar Anúncios</h1>
         <section>
-            <form action="consultar.jsp" method="POST">
-                <div id="pageConsulta">
-                    <label for="cliente">Cliente </label>
-
-                    <select name="cliente" >
-                        <% for (Anuncio c : lista) { %>
-                        <option name="cliente" id="cliente" value="<%out.write("" + c.getCliente());%>">
-                            <% out.write(c.getCliente()); %>
-                        </option>
-                        <%}%>
-                    </select> 
-                    <label for="inicio">Data de Início </label>    
-                    <input type="date" name="inicio" id="inicio">
-                    <label for="termino">Data de Término </label>    
-                    <input type="date" name="termino" id="termino">
-                    <button type="button" name="enviar" onclick="VerificarConsulta()">Consultar</button>
-                    <br>
-                </div>
+            <form action="receberconsulta.jsp" method="POST">
+                <label for="cliente">Cliente </label>
+                <select name="listacliente" id="cliente">
+                    <option name="vazio" value=""> </option>
+                    <% for (Anuncio c : lista) { %>
+                    <option name="cliente">
+                        <% out.write(c.getCliente()); %>
+                    </option>
+                    <%}%>
+                </select> 
+                <label for="inicio">Data de Início </label>    
+                <input type="date" name="inicio" id="inicio">
+                <label for="termino">Data de Término </label>    
+                <input type="date" name="termino" id="termino">
+                <button type="button" name="enviar" onclick="Consultar()">Consultar</button>
+                <br>
+            </form>
+            <div id="pageConsulta">
                 <table>
                     <thead>
                     <th>Anúncio</th>
@@ -64,20 +63,19 @@
                     <th>Máximo de <br>Cliques</th>
                     </thead>
                     <tbody>
-                        <% for (Anuncio a : listagem) {%>
-                        <tr>
-                            <td><% out.write(String.valueOf(a.getNome())); %></td>
-                            <td><% out.write(String.valueOf(a.getInvestimento())); %></td>
-
-                            <td> -- </td>
-                            <td> -- </td>
-                            <td> -- </td> 
-
-                        </tr>
-                        <%}%>
-                    </tbody>
+                            <% for(Anuncio a : listagem) {%>
+                                <tr>
+                                    
+                                    <td><% out.write(String.valueOf(a.getNome())); %></td>
+                                    <td><% out.write(String.valueOf(a.getInvestimento())); %></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>                       
+                                </tr>
+                            <%}%>
+                        </tbody>
                 </table> 
-            </form>
+            </div>
         </section>
         <footer>
             <div id="consulta">

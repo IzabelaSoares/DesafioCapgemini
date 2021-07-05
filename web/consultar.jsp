@@ -18,33 +18,29 @@
     </head>
     <body>  
         <%
-            //PEGAR OS PARAMETROS
-            String inicio = request.getParameter("inicio");
-            String termino = request.getParameter("termino");
-
             Anuncio cliente = new Anuncio();
             List<Anuncio> lista = cliente.listaClientes();
         %>
         <h1>Consultar Anúncios</h1>
         <section>
             <form action="receberconsulta.jsp" method="POST">
-                <div id="pageConsulta">
-                    <label for="cliente">Cliente </label>
-                    
-                    <select name="codigoempregado">
-                     <% for(Anuncio c: lista){ %>
-                        <option name="codigoempregado" value="<%out.write(""+c.getId());%>">
-                            <% out.write(c.getCliente()); %>
-                        </option>
-                     <%}%>
-                 </select> 
-                    <label for="inicio">Data de Início </label>    
-                    <input type="date" name="inicio" id="inicio">
-                    <label for="termino">Data de Término </label>    
-                    <input type="date" name="termino" id="termino">
-                    <button type="button" name="enviar" onclick="VerificarConsulta()">Consultar</button>
-                    <br>
-                </div>
+                <label for="cliente">Cliente </label>
+                <select name="listacliente" id="cliente">
+                    <option name="vazio" value=""> </option>
+                    <% for (Anuncio c : lista) { %>
+                    <option name="cliente">
+                        <% out.write(c.getCliente()); %>
+                    </option>
+                    <%}%>
+                </select> 
+                <label for="inicio">Data de Início </label>    
+                <input type="date" name="inicio" id="inicio">
+                <label for="termino">Data de Término </label>    
+                <input type="date" name="termino" id="termino">
+                <button type="button" name="enviar" onclick="Consultar()">Consultar</button>
+                <br>
+            </form>
+            <div id="pageConsulta">
                 <table>
                     <thead>
                     <th>Anúncio</th>
@@ -54,7 +50,7 @@
                     <th>Máximo de <br>Cliques</th>
                     </thead>
                 </table> 
-            </form>
+            </div>
         </section>
         <footer>
             <div id="consulta">
