@@ -1,25 +1,38 @@
-CREATE DATABASE anuncio;
+--CRIAR O BANCO DE DADOS
+create database anuncio;
 
-DROP TABLE cadastro;
-DROP TABLE consulta;
+--DELETAR AS TABELAS 
+drop table consulta;
+drop table cadastro;
 
-CREATE TABLE cadastro (
+--DELETAR ITENS
+delete from cadastro;
+delete from consulta;
+
+--CRIAR TABELA DE CADASTRO
+create table cadastro (
 	id serial not null,
 	nome varchar(100) not null,
 	cliente varchar (100) not null,
 	inicio date not null,
 	termino date not null,
 	investimento int not null,
-	primary key (cliente));
+	primary key (id));
 
-CREATE TABLE consulta (
+--SELECT PARA CADASTRO
+select * from cadastro;
+
+
+--CRIAR A TABELA DE CONSULTA
+create table consulta (
 	id serial not null,
-	nome varchar(100) not null,
 	cliente varchar(100) not null,
+	nome varchar(100) not null,
 	visualizacao int,
 	clique int,
 	compartilhamento int,
 	investimentototal int,
-	primary key (cliente));
+	primary key (id));
 
-ALTER TABLE ONLY consulta ADD CONSTRAINT fk_cliente FOREIGN KEY (cliente) REFERENCES cadastro(cliente);
+--SELECT PARA A CONSULTA
+select * from consulta;
