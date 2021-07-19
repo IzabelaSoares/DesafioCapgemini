@@ -11,7 +11,7 @@ import utils.Conexao;
 
 public class Anuncio {
 
-    //VARIAVEIS DE CADASTRO
+    //VARIAVEIS TABELA CADASTRO
     private Integer id;
     private String nome;
     private String cliente;
@@ -19,13 +19,13 @@ public class Anuncio {
     private Date termino;
     private Integer investimento;
 
-    //VARIAVEIS DE CONSULTA
+    //VARIAVEIS TABELA CONSULTA
     private Integer visualizacao;
     private Integer clique;
     private Integer compartilhamento;
     private Integer investimentoTotal;
 
-    //CADASTRO DE ANÚNCIO
+    //CADASTRO DE ANÚNCIO - TABELA CADASTRO
     public boolean incluir() {
         String sql = "insert into public.cadastro (nome, cliente, inicio, termino, investimento)"
                 + " values( ?, ?, ?, ?, ?)";
@@ -47,11 +47,34 @@ public class Anuncio {
         return true;
     }
 
+    //CADASTRAR ANÚNCIO - TABELA CONSULTA
+    public boolean incluirAnuncio() {
+        String sql = "insert into public.consulta (cliente, visualizacao, clique, "
+                + "compartilhamento, investimentototal, nome) values( ?, ?, ?, ?, ?, ?)";
+
+        Connection con = Conexao.conectar();
+        try {
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, this.cliente);
+            stm.setInt(2, this.visualizacao);
+            stm.setInt(3, this.clique);
+            stm.setInt(4, this.compartilhamento);
+            stm.setInt(5, this.investimentoTotal);
+            stm.setString(6, this.nome);
+            stm.execute();
+
+        } catch (SQLException ex) {
+            System.out.println("ERRO: " + ex.getMessage());
+            return false;
+        }
+        return true;
+    }
+
     //LISTA DE CLIENTES PARA CONSULTAR
     public List<Anuncio> listaClientes() {
         List<Anuncio> lista = new ArrayList<>();
         String sql = "select id, cliente from cadastro";
-        
+
         Connection con = Conexao.conectar();
         try {
             PreparedStatement stm = con.prepareStatement(sql);
@@ -68,12 +91,41 @@ public class Anuncio {
         return lista;
     }
 
-    //CONSULTAR POR DATA E CLIENTE
-    public List<Anuncio> consultar(String cliente, String inicio, String termino) {
-        List<Anuncio> lista = new ArrayList<>();
-        String sql = "select * from cadastro where cliente = '" + cliente +"' and "
-                    + "inicio between '"+ inicio +"' and '"+ termino +"'";
+    //CONSULTAR POR CLIENTE E DATA
+    public List<Anuncio> consultarPesquisa(String cliente, String data1, String data2) {
         
+        List<Anuncio> lista1 = new ArrayList<>();
+        
+        String sql = "select a.nome, a.inicio, a.termino, b.visualizacao, "
+                + "b.clique, b.compartilhamento, b.investimentototal "
+                + "from  cadastro a, consulta b where a.cliente = '"+ cliente +"' and a.nome = b.nome "
+                + "and a.inicio between '"+ data1 +"' and '"+ data2 +"' order by a.nome";
+
+        Connection con = Conexao.conectar();
+        try {
+            PreparedStatement stm = con.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Anuncio consulta1 = new Anuncio();
+                consulta1.setNome(rs.getString("nome"));
+                consulta1.setClique(rs.getInt("clique"));
+                consulta1.setCompartilhamento(rs.getInt("compartilhamento"));
+                consulta1.setVisualizacao(rs.getInt("visualizacao"));
+                consulta1.setInvestimentoTotal(rs.getInt("investimentoTotal"));
+                lista1.add(consulta1);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+        return lista1;
+
+    }
+    
+    //CONSULTAR TODOS OS ANUNCIOS
+    public List<Anuncio> consultar() {
+        List<Anuncio> lista = new ArrayList<>();
+        String sql = "select * from consulta";
+
         Connection con = Conexao.conectar();
         try {
             PreparedStatement stm = con.prepareStatement(sql);
@@ -83,18 +135,18 @@ public class Anuncio {
                 consulta.setId(rs.getInt("id"));
                 consulta.setNome(rs.getString("nome"));
                 consulta.setCliente(rs.getString("cliente"));
-                consulta.setInicio(rs.getDate("inicio"));
-                consulta.setTermino(rs.getDate("termino"));
-                consulta.setInvestimento(rs.getInt("investimento"));
+                consulta.setClique(rs.getInt("clique"));
+                consulta.setCompartilhamento(rs.getInt("compartilhamento"));
+                consulta.setVisualizacao(rs.getInt("visualizacao"));
+                consulta.setInvestimentoTotal(rs.getInt("investimentoTotal"));
                 lista.add(consulta);
             }
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex.getMessage());
         }
         return lista;
-        
-    }
 
+    }
     //GETTERS AND SETTERS
     public void setId(Integer id) {
         this.id = id;

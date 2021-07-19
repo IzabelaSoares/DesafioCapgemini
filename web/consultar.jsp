@@ -20,6 +20,9 @@
         <%
             Anuncio cliente = new Anuncio();
             List<Anuncio> lista = cliente.listaClientes();
+
+            Anuncio consulta = new Anuncio();
+            List<Anuncio> listaconsulta = consulta.consultar();
         %>
         <h1>Consultar Anúncios</h1>
         <section>
@@ -28,7 +31,7 @@
                 <select name="listacliente" id="cliente">
                     <option name="vazio" value=""> </option>
                     <% for (Anuncio c : lista) { %>
-                    <option name="cliente">
+                    <option>
                         <% out.write(c.getCliente()); %>
                     </option>
                     <%}%>
@@ -49,6 +52,17 @@
                     <th>Máximo de <br>Compartilhamentos</th>
                     <th>Máximo de <br>Cliques</th>
                     </thead>
+                    <tbody>
+                        <% for (Anuncio a : listaconsulta) {%>
+                        <tr>
+                            <td><% out.write(String.valueOf(a.getNome())); %></td>
+                            <td><% out.write(String.valueOf(a.getInvestimentoTotal())); %></td>
+                            <td><% out.write(String.valueOf(a.getVisualizacao())); %></td>
+                            <td><% out.write(String.valueOf(a.getCompartilhamento())); %></td>
+                            <td><% out.write(String.valueOf(a.getClique())); %></td>                      
+                        </tr>
+                        <%}%>
+                    </tbody>
                 </table> 
             </div>
         </section>

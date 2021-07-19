@@ -4,6 +4,7 @@
     Author     : Izabela
 --%>
 
+<%@page import="java.sql.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="dominio.Anuncio"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -18,21 +19,18 @@
     </head>
     <body>  
         <%
-            //CLIENTES
-            Anuncio cliente = new Anuncio();
-            List<Anuncio> lista = cliente.listaClientes();
-
             //PEGAR OS PARAMETROS
-            String cliente1 = request.getParameter("cliente");
+            String cliente1 = request.getParameter("listacliente");
             String inicio = request.getParameter("inicio");
             String termino = request.getParameter("termino");
 
             //LISTAGEM DE CONSULTA
-            Anuncio consulta = new Anuncio();
-            List<Anuncio> listagem = consulta.consultar(cliente1, inicio, termino);
-
-            //FORMATAR A DATA
-            SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+            Anuncio pesquisa = new Anuncio();
+            List<Anuncio> listagem = pesquisa.consultarPesquisa(cliente1, inicio, termino);
+            
+            //CLIENTES
+            Anuncio cliente = new Anuncio();
+            List<Anuncio> lista = cliente.listaClientes();
         %>
         <h1>Consultar Anúncios</h1>
         <section>
@@ -63,17 +61,16 @@
                     <th>Máximo de <br>Cliques</th>
                     </thead>
                     <tbody>
-                            <% for(Anuncio a : listagem) {%>
-                                <tr>
-                                    
-                                    <td><% out.write(String.valueOf(a.getNome())); %></td>
-                                    <td><% out.write(String.valueOf(a.getInvestimento())); %></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>                       
-                                </tr>
-                            <%}%>
-                        </tbody>
+                        <% for (Anuncio a : listagem) {%>
+                        <tr>
+                            <td><% out.write(String.valueOf(a.getNome())); %></td>
+                            <td><% out.write(String.valueOf(a.getInvestimentoTotal())); %></td>
+                            <td><% out.write(String.valueOf(a.getVisualizacao())); %></td>
+                            <td><% out.write(String.valueOf(a.getCompartilhamento())); %></td>
+                            <td><% out.write(String.valueOf(a.getClique())); %></td>                      
+                        </tr>
+                        <%}%>
+                    </tbody>
                 </table> 
             </div>
         </section>
