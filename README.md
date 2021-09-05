@@ -2,7 +2,7 @@
 Este desafio possuia duas partes, a calculadora e o cadastrador de anuncios... <br>
 
 ## Calculadora  de Anúncios
-Está localizada como `calculadora.html`, porém o script é javascript, a razão de estar assim é que desenvolvi em uma página web <br>
+Está localizada como `calculadora.html`, porém o script é javascript, a razão de estar assim é que desenvolvi em uma página web
 para ser mais divertido o desenvolvimento deste projeto. <br>
 Gostei muito de realizar a calculadora, por isso se quiser detalhes dela, criei um repositório com os arquivos e um readme.md explicativo, <br>
 para acessar o repositório veja o link [CalculadoraCapgemini](https://github.com/IzabelaSoares/CalculadoraCapgemini.git) <br>
